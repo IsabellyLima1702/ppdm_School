@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
+import br.senai.sp.jandira.lionschool.screens.Courses
 import br.senai.sp.jandira.lionschool.screens.HomeScreen
 import br.senai.sp.jandira.lionschool.ui.theme.LionSchoolTheme
 
@@ -21,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LionSchoolTheme {
                 // HomeScreen()
-
+                //Courses()
             }
         }
     }

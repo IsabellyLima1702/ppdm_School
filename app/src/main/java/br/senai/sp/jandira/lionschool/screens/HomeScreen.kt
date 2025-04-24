@@ -1,6 +1,7 @@
 package br.senai.sp.jandira.lionschool.screens
 
 import android.content.Context
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -35,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -73,35 +75,33 @@ fun HomeScreen(modifier: Modifier){
                 .padding(top = 90.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
 
-
         ){
-            Card (
-                modifier = Modifier
-                    .padding(start = 35.dp)
-            ){
-                Image(
-                    painter = painterResource(
-                        R.drawable.logo
-                    ),
-                    contentDescription = stringResource(
-                        R.string.app_name
-                    ),
-                    modifier = Modifier
-                        .padding(top = 80.dp)
-                        .size(120.dp)
-                )
-            }
+                Row (
 
-            Text(
-                text = stringResource(
-                    R.string.app_name,
-                    modifier
-                        .padding(end = 20.dp)
-                ),
-                color = Color(0xFF3246A9),
-                fontSize = 35.sp,
-                fontWeight = FontWeight.Bold
-            )
+                ){
+                    Image(
+                        painter = painterResource(
+                            R.drawable.logo
+                        ),
+                        contentDescription = stringResource(
+                            R.string.app_name
+                        ),
+                        modifier = Modifier
+                            .padding(bottom = 2.dp, end = 15.dp)
+                            .size(170.dp)
+                    )
+
+                    Text(
+                        text = stringResource(
+                            R.string.name
+                        ),
+                        modifier = Modifier
+                            .padding(top = 10.dp, end = 20.dp),
+                        color = Color(0xFF2A3CA5),
+                        fontSize = 47.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             Card (
                 modifier = Modifier
                     .fillMaxWidth()
@@ -131,18 +131,18 @@ fun HomeScreen(modifier: Modifier){
                                 .padding(start = 25.dp, top = 50.dp),
                             fontSize = 23.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF3F51B5)
+                            color = Color(0xFF2A3CA5)
                         )
                         Card(
                             modifier = Modifier
-                                .height(17.dp)
+                                .height(16.dp)
                                 .width(189.dp)
                                 .padding(start = 125.dp, end = 2.dp, top = 10.dp),
 
 
 
                             shape = RoundedCornerShape(
-                                16.dp
+                                15.dp
                             ),
                             colors = CardDefaults
                                 .cardColors(
@@ -159,16 +159,18 @@ fun HomeScreen(modifier: Modifier){
                             modifier = Modifier
                                 .padding(top = 40.dp),
                             fontSize = 18.sp,
+                            textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Normal,
                             color = Color(0xFF9B9B99)
                         )
                         Button(
                             modifier = Modifier
                                 .width(310.dp)
-                                .padding( top = 180.dp)
-                                .border(2.dp,
-                                    color = Color(0xFF3F51B5),
-                                    RoundedCornerShape(13.dp)),
+                                .padding( top = 150.dp),
+                                border = BorderStroke(
+                                width = 2.dp,
+                                    color = Color(0xFF2A3CA1),
+                            ),
                             onClick = {},
                             shape = RoundedCornerShape(13.dp),
 
@@ -181,8 +183,8 @@ fun HomeScreen(modifier: Modifier){
                                 text = stringResource(
                                     R.string.button
                                 ),
-                                fontSize = 17.sp,
-                                color = Color(0xFF3F51B5)
+                                fontSize = 18.sp,
+                                color = Color(0xFF2A3CA1)
 
                             )
                         }
@@ -191,10 +193,6 @@ fun HomeScreen(modifier: Modifier){
                     Row (
                         modifier = Modifier
                             .fillMaxWidth()
-                    ) {
-                        Column(
-                            modifier = Modifier,
-                            horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
                             Image(
                                 painter = painterResource(
@@ -204,16 +202,11 @@ fun HomeScreen(modifier: Modifier){
                                     R.string.image
                                 ),
                                 modifier = Modifier
-                                    .padding(top = 30.dp)
+                                    .padding(top = 30.dp, start = 10.dp)
                                     .height(35.dp)
-                                    .width(130.dp)
+                                    .width(70.dp)
 
                             )
-                        }
-                        Column(
-                            modifier = Modifier,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                        ) {
                             Image(
                                 painter = painterResource(
                                     R.drawable.twitter
@@ -224,14 +217,9 @@ fun HomeScreen(modifier: Modifier){
                                 modifier = Modifier
                                     .padding(top = 30.dp)
                                     .height(35.dp)
-                                    .width(130.dp)
+                                    .width(70.dp)
 
                             )
-                        }
-                        Column(
-                            modifier = Modifier,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                        ) {
                             Image(
                                 painter = painterResource(
                                     R.drawable.instagram
@@ -242,28 +230,23 @@ fun HomeScreen(modifier: Modifier){
                                 modifier = Modifier
                                     .padding(top = 30.dp)
                                     .height(35.dp)
-                                    .width(130.dp)
+                                    .width(70.dp)
 
                             )
-                        }
-                        Column(
-                            modifier = Modifier,
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                        ) {
-                            Image(
-                                painter = painterResource(
-                                    R.drawable.facebook
-                                ),
-                                contentDescription = stringResource(
-                                    R.string.image
-                                ),
-                                modifier = Modifier
-                                    .padding(top = 30.dp)
-                                    .height(35.dp)
-                                    .width(130.dp)
 
-                            )
-                        }
+                                Image(
+                                    painter = painterResource(
+                                        R.drawable.facebook
+                                    ),
+                                    contentDescription = stringResource(
+                                        R.string.image
+                                    ),
+                                    modifier = Modifier
+                                        .padding(top = 30.dp)
+                                        .height(35.dp)
+                                        .width(70.dp)
+
+                                )
                     }
                 }
 
