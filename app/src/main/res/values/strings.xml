@@ -10,6 +10,12 @@
     <string name="developer">DS</string>
     <string name="title">Systems Development</string>
     <string name="paragraph">Learn to develop web and mobile applications.</string>
+    <string name="detail1">SIOP</string>
+    <string name="detail2">INRI</string>
+    <string name="detail3">INNU</string>
+    <string name="detail4">HA</string>
+    <string name="detail5">SERE</string>
+    <string name="detail6">Caes</string>
     <string name="semesters">3 semesters</string>
 
 </resources>

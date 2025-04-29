@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -41,6 +42,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.lionschool.R
+import br.senai.sp.jandira.lionschool.calcs.lionCalculate
+import java.util.Locale
 
 @Composable
 fun Courses(modifier: Modifier) {
@@ -58,8 +61,14 @@ fun Courses(modifier: Modifier) {
         //Mode_Private deixa o seu programa privado para que outros programas nao acessem os dados do seu
         .getSharedPreferences("UserFile", Context.MODE_PRIVATE)
 
-    //Colocar o arquivo em modo de edição
-    val editor = userFile.edit()
+    val userWeight = userFile.getInt("user_weight", 0)
+    val userHeight = userFile.getFloat("user_height", 0.0F)
+    val userAge = userFile.getInt("user_age", 0)
+
+    val lion = lionCalculate(
+        userWeight,
+        userHeight.toDouble().div(100)
+    )
 
 
     Box(
@@ -84,8 +93,8 @@ fun Courses(modifier: Modifier) {
                         R.string.app_name
                     ),
                     modifier = Modifier
+                        .size(70.dp),
 
-                        .size(70.dp)
                 )
                 Text(
                     text = stringResource(
@@ -114,62 +123,84 @@ fun Courses(modifier: Modifier) {
                         containerColor = Color(0xFFF5AD30)
                     )
 
-            ){}
-            OutlinedTextField(
-                value = "",
-                onValueChange = {},
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 30.dp)
-                    .background(color = Color(0xFFF1EEEE)),
+            ){
 
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
-                    imeAction = ImeAction.Search
+            }
+            Column (
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 8.dp, end = 22.dp)
+                    .background(color = Color.Blue),
+                verticalArrangement = Arrangement.Center,
+            ){
+                Text(
+                    text = stringResource(
+                        R.string.image
+                    ),
+                    modifier = Modifier,
+                    color = Color.Black
+                )
+            }
+            Card(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 160.dp),
+                shape = RoundedCornerShape(
+                    topStart = 35.dp,
+                    topEnd = 35.dp
                 ),
-
-                trailingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "",
-                        tint = Color(0xFF938F8D)
+                colors = CardDefaults
+                    .cardColors(
+                        containerColor = Color.White
                     )
-                },
-                shape = RoundedCornerShape(10.dp),
-                label = {
-                    Text(
-                        modifier = Modifier
-                            .padding(start = 35.dp),
-                        color = Color(0xFF938F8D),
-                        fontSize = 19.sp,
-                        text = stringResource(R.string.search)
-                    )
-                }
-            )
-
-        }
-        Card(
-            shape = RoundedCornerShape(
-                15.dp
-            ),
-            modifier = Modifier
-                .padding(bottom = 20.dp, top = 20.dp)
-        ) {
-            Row (
-                modifier = Modifier
-                    .background(
-                        color = Color(0xFFF6C792)
-                    )
-                    .padding(6.dp)
             ){
                 Column (
                     modifier = Modifier
-                        .weight(1f),
+                        .fillMaxSize()
+                        .padding(top = 30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
 
+                    Card (
+                        modifier = Modifier
+                            .size(160.dp),
+                        shape = CircleShape,
+                        border = BorderStroke(
+                            width = 4.dp,
+                            color = lion.lionColor
+                        )
+                    ){
+                         Text(
+                             text = String.format(
+                                 Locale.getDefault(),
+                                 "%.1f",
+                                 lion.lion.second
+                             ),
+                             fontSize = 50.sp,
+                             color = Color.Black,
+                             fontWeight = FontWeight.Bold,
+                             modifier = Modifier
+                                 .padding(top = 50.dp, start = 30.dp)
+                         )
+                    }
+                    Text(
+                        text = lion.lion.first,
+                        modifier = Modifier
+                            .padding(top = 23.dp),
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+                    Card (
+                        shape = RoundedCornerShape(
+                            15.dp
+                        ),
+                        modifier = Modifier
+                            .padding(bottom = 20.dp, top = 20.dp)
+                    ){}
                 }
             }
+
         }
 
     }
